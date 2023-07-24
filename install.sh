@@ -1,6 +1,9 @@
 #!/bin/bash
 # Used a lot of base setup for a internet-based install.sh file from HomeBrew https://github.com/Homebrew/
 
+#Get current username for later usage
+USER="$(id -un)"
+
 # We don't need return codes for "$(command)", only stdout is needed.
 # Allow `[[ -n "$(command)" ]]`, `func "$(command)"`, pipes, etc.
 # shellcheck disable=SC2312
@@ -45,6 +48,9 @@ xcode-select --install
 
 # Install Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+(echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/$USER/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Install PIPX
 brew install pipx
