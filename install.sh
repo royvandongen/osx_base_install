@@ -58,3 +58,4 @@ pipx ensurepath
 
 # Install Ansible
 pipx install --include-deps ansible
+pipx ensurepath
